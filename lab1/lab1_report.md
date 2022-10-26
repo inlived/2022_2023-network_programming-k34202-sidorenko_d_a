@@ -16,7 +16,6 @@ Date of finished: \
 3. Установлен python 3 pip, выполнен переход в необходимую папку для дальнейшей работы.\
 ![image](https://user-images.githubusercontent.com/80837580/196764693-9d6699df-eddf-48ab-b2b2-771eb9d3cd9f.png)
 4. Установлен Ansible, проверена его версия.\
-![image](https://user-images.githubusercontent.com/80837580/196765910-0de939cb-8fd4-48c1-a999-a0e4da3e7c44.png)
 ![image](https://user-images.githubusercontent.com/80837580/196766296-086b4a20-20e4-4e7b-8046-60f9583cbabc.png)
 5. На удаленную машину установлен Wireguarg для будущего туннеля между Микротиком и ВМ, показана версия установленного Wireguard.\
 ![image](https://user-images.githubusercontent.com/80837580/196767101-5cbd538b-52c6-4db3-80c7-e7c727fd1e19.png)
