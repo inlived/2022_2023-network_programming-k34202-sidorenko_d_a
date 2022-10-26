@@ -17,7 +17,7 @@ Date of finished: \
 ![image](https://user-images.githubusercontent.com/80837580/196764693-9d6699df-eddf-48ab-b2b2-771eb9d3cd9f.png)
 4. Установлен Ansible, проверена его версия.\
 ![image](https://user-images.githubusercontent.com/80837580/196766296-086b4a20-20e4-4e7b-8046-60f9583cbabc.png)
-5. На удаленную машину установлен Wireguarg для будущего туннеля между Микротиком и ВМ, показана версия установленного Wireguard.\
+5. На удаленную машину установлен Wireguard для будущего туннеля между Микротиком и ВМ, показана версия установленного Wireguard.\
 ![image](https://user-images.githubusercontent.com/80837580/196767101-5cbd538b-52c6-4db3-80c7-e7c727fd1e19.png)
 6. Создана и запущена виртуальная машина версии Mikrotik 7.\
 ![image](https://user-images.githubusercontent.com/80837580/196767347-db00db29-9510-4b8a-bb47-7eefe942c8e1.png)
