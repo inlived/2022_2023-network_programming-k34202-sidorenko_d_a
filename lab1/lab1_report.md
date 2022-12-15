@@ -6,7 +6,7 @@ Group: K34202\
 Author: Sidorenko Darya Alekseevna\
 Lab: Lab1\
 Date of create: 16.10.2022\
-Date of finished: \
+Date of finished: 27.10.2022\
 Цель работы: развертывание виртуальной машины с установленной системой контроля конфигураций Ansible и установка CHR в VirtualBox\
 Ход работы:
 1. Создана ВМ на Яндекс.Облаке, произведено подключение к ней по shh. \
