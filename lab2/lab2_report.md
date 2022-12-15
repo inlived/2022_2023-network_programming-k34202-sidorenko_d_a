@@ -27,3 +27,4 @@ Date of finished: \
 ![9im](https://user-images.githubusercontent.com/80837580/207801680-99a3c155-dafd-47c5-8c49-daf0fdc5a653.png)
 Вывод:\
 В ходе выполнения лабораторной работы был создан еще один CHR. Удалённо были проведены настройки обоих CHR с помощью Ansible, установленного на ВМ, находящейся в YandexCloud.\
+![Диаграмма без названия](https://user-images.githubusercontent.com/80837580/207804492-acfae38e-0535-48fe-b1f3-d54865c61fd9.png)
