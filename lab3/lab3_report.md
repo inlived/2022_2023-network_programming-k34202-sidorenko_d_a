@@ -8,18 +8,76 @@ Lab: Lab3\
 Date of create: 15.12.2022\
 Date of finished: \
 Ход работы:
-1. Netbox развёрнут на облачной виртуальной машине. Netbox — это open source веб приложение, разработанное для управления и документирования компьютерных сетей.\
-2. Установлена база данных postgresql и выполнена настройка. Создана база данных и привелегированный пользователь.\
-![1](https://user-images.githubusercontent.com/80837580/209463031-6dcbbeb2-2a04-47fa-add5-f1f3be696c53.png)\
-3.  Установлен Redis с помощью команды ```sudo apt install -y redis-server```. Redis - это хранилище значений ключей в памяти. NetBox использует его для кэширования и постановки в очередь.\
-![2](https://user-images.githubusercontent.com/80837580/209462953-980879cb-a1bb-456f-8e5d-826482614db7.png)\
-4.  Для установки и настройки Netbox установлены все необходимые пакеты с помощью утилиты ```sudo apt install```. Создана директория, в неё установлен и распакован Netbox.\
-5.  Создан пользователь, которому предоставлены права на все папки и файлы Netbox.\ Использованы следующие команды. \ ```groupadd --system netbox``` \ ```sudo adduser --system -g netbox netbox```\ ```chown --recursive netbox /opt/netbox/netbox/media/```\
-6.  Создано виртуальное окружение, где установлены все зависимости. \ ```python3 -m venv /opt/netbox/venv```\ ```source venv/bin/activate``` \ ```pip3 install -r requirements.txt```\
-7.  В файл конфигурации configuration.py скопирован пример файла конфигурации configuration.example.py с помощью утилит ```cd```, ```cp```. \
-8.  С помощью входящего в состав netbox исполнительного файла gnerate_secret_key.py сгенерирован секретный ключ. Открыт и отредактирован файл конфигурации configuration.py.\
-![2](https://user-images.githubusercontent.com/80837580/209462991-cc512017-960d-4a2e-923e-28e1d03bbe3d.png)\
-9. Выполнены миграции с помощью команды ```python3 manage.py migrate```. Внутри вирутального окружения создан superuser для дальнейшего управления netbox. Собрана статика ```python3 manage.py collectstatic --no-input```.\
+---
+
+# 1. Поднятие NetBox на дополнительной VM.
+
+> Netbox — это открытое (open source) веб приложение, разработанное для управления и документирования компьютерных сетей. 
++ Netbox был развёрнут на облачной виртуальной машине.
+ 
+ ## Установка и настройка PostgreSQL
+ 
++ Установлена база данных postgresql и выполнена настройка/
+
+`sudo apt install postgresql`
+
+<img src="https://user-images.githubusercontent.com/90505004/205984218-d965a48d-5e1a-40b4-ae2d-49ead76a4061.png" height="150">
+
++ Создана нужная база данных и привелегированный пользователь
+
+<img src="https://user-images.githubusercontent.com/90505004/205985187-1e81d4cd-8593-44cc-9272-0656d229dccf.png" height="150">
+
+
+## Установка Redis
+
++ Установлен Redis  `sudo apt install -y redis-server`
+
+<img src="https://user-images.githubusercontent.com/90505004/205986637-7837bbdb-5fee-4da7-aac8-04c5978d347f.png" height="200"> 
+
+<img src="https://user-images.githubusercontent.com/90505004/205986348-e7af3419-57e8-4001-b09e-d590e64398c4.png" height="30">
+
+> Redis - это хранилище значений ключей в памяти. NetBox использует его для кэширования и постановки в очередь.
+
+## Установка и настройка NetBox
+
++ Установлены все необходимые пакеты
+
+`sudo apt install python3 python3-pip python3-venv python3-dev build-essential libxml2-dev libxslt1-dev libffi-dev libpq-dev libssl-dev zlib1g-dev git -y`
+
+![image](https://user-images.githubusercontent.com/90505004/205987669-aa4d3b7b-7767-44e0-a1af-bf6f2e508108.png)
+
++ Создана директория, в которую установлен и распакован Netbox.
+
+`sudo wget https://github.com/netbox-community/netbox/archive/refs/tags/v3.3.9.tar.gz`
+
+`sudo tar -xzf v3.3.9.tar.gz -C /opt`
+
+`sudo ln -s /opt/netbox-3.3.9/ /opt/netbox`
+
+![image](https://user-images.githubusercontent.com/90505004/205988675-028a170d-1c42-4dd1-a35a-4798a3791fbb.png)
+
+
++ Создан пользователь с предоставленными правами на все папки и файлы Netbox.
+
+`groupadd --system netbox`
+
+`sudo adduser --system -g netbox netbox`
+
+`chown --recursive netbox /opt/netbox/netbox/media/`
+
++ Создано виртуальное окружение, где установлены все зависимости
+
+`python3 -m venv /opt/netbox/venv`
+
+`source venv/bin/activate`
+
+`pip3 install -r requirements.txt`
+
++ Cкопирован пример файла конфигурации configuration.example.py в файл конфигурации configuration.py.
+
+`cd netbox/netbox/`
+
+`cp configuration.example.py configuration.py`
 
 + С помощью входящего в состав netbox исполнительного файла gnerate_secret_key.py сгенерирован секретный ключ.
 
