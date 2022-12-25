@@ -17,21 +17,21 @@ Netbox — это открытое (open source) веб приложение, р
  
  ## Установка и настройка PostgreSQL
  
-+ Установлена база данных postgresql и выполнена настройка. Использована следующая команда `sudo apt install postgresql`/
++ Установлена база данных postgresql и выполнена настройка. Использована следующая команда `sudo apt install postgresql`
 
-+ Создана нужная база данных и привелегированный пользователь./
++ Создана нужная база данных и привелегированный пользователь.
 
-![1](https://user-images.githubusercontent.com/80837580/209463394-fda06599-7c6f-42a5-96f8-0249758b7213.png)/
+![1](https://user-images.githubusercontent.com/80837580/209463394-fda06599-7c6f-42a5-96f8-0249758b7213.png)
 
 ## Установка Redis
 Redis - это хранилище значений ключей в памяти. NetBox использует его для кэширования и постановки в очередь.
 + Установлен Redis с помощью команды  `sudo apt install -y redis-server`
 
-![2](https://user-images.githubusercontent.com/80837580/209463420-5332f418-dc34-4ecf-81af-e1df1d700aec.png)/
+![2](https://user-images.githubusercontent.com/80837580/209463420-5332f418-dc34-4ecf-81af-e1df1d700aec.png)
 
 ## Установка и настройка NetBox
 
-+ Установлены все необходимые пакеты для дальнейшей установки и настройки Netbox./
++ Установлены все необходимые пакеты для дальнейшей установки и настройки Netbox.
 
 `sudo apt install python3 python3-pip python3-venv python3-dev build-essential libxml2-dev libxslt1-dev libffi-dev libpq-dev libssl-dev zlib1g-dev git -y`
 
