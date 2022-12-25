@@ -1,0 +1,3 @@
+Name,Status,Tenant,Site,Location,Rack,Role,Manufacturer,Type,IP Address,ID,Tenant Group,Platform,Serial number,Asset tag,Region,Site Group,Position (U),Rack face,Airflow,IPv4 Address,IPv6 Address,Cluster,Virtual chassis,VC Position,VC Priority,Comments,Contacts,Tags,Created,Last updated
+mikrotik1,Active,,site,,,router,mikrotik,chr,192.168.6.67/24,1,,,MN6J-VHU6,,Russia,,,,,192.168.6.67/24,,,,,,,,,2022-12-10 20:58,2022-12-10 23:23
+mikrotik2,Active,,site,,,router,mikrotik,chr,192.168.6.68/24,2,,,AE6Y-65NF,,Russia,,,,,192.168.6.68/24,,,,,,,,,2022-12-10 20:58,2022-12-10 23:23
