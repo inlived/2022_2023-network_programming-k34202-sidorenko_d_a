@@ -8,43 +8,32 @@ Lab: Lab3\
 Date of create: 15.12.2022\
 Date of finished: \
 Ход работы:
+
 ---
 
-# 1. Поднятие NetBox на дополнительной VM.
-
-> Netbox — это открытое (open source) веб приложение, разработанное для управления и документирования компьютерных сетей. 
+# Поднятие NetBox на дополнительной VM.
+Netbox — это открытое (open source) веб приложение, разработанное для управления и документирования компьютерных сетей. 
 + Netbox был развёрнут на облачной виртуальной машине.
  
  ## Установка и настройка PostgreSQL
  
-+ Установлена база данных postgresql и выполнена настройка/
++ Установлена база данных postgresql и выполнена настройка. Использована следующая команда `sudo apt install postgresql`/
 
-`sudo apt install postgresql`
++ Создана нужная база данных и привелегированный пользователь./
 
-<img src="https://user-images.githubusercontent.com/90505004/205984218-d965a48d-5e1a-40b4-ae2d-49ead76a4061.png" height="150">
-
-+ Создана нужная база данных и привелегированный пользователь
-
-<img src="https://user-images.githubusercontent.com/90505004/205985187-1e81d4cd-8593-44cc-9272-0656d229dccf.png" height="150">
-
+![1](https://user-images.githubusercontent.com/80837580/209463394-fda06599-7c6f-42a5-96f8-0249758b7213.png)/
 
 ## Установка Redis
+Redis - это хранилище значений ключей в памяти. NetBox использует его для кэширования и постановки в очередь.
++ Установлен Redis с помощью команды  `sudo apt install -y redis-server`
 
-+ Установлен Redis  `sudo apt install -y redis-server`
-
-<img src="https://user-images.githubusercontent.com/90505004/205986637-7837bbdb-5fee-4da7-aac8-04c5978d347f.png" height="200"> 
-
-<img src="https://user-images.githubusercontent.com/90505004/205986348-e7af3419-57e8-4001-b09e-d590e64398c4.png" height="30">
-
-> Redis - это хранилище значений ключей в памяти. NetBox использует его для кэширования и постановки в очередь.
+![2](https://user-images.githubusercontent.com/80837580/209463420-5332f418-dc34-4ecf-81af-e1df1d700aec.png)/
 
 ## Установка и настройка NetBox
 
-+ Установлены все необходимые пакеты
++ Установлены все необходимые пакеты для дальнейшей установки и настройки Netbox./
 
 `sudo apt install python3 python3-pip python3-venv python3-dev build-essential libxml2-dev libxslt1-dev libffi-dev libpq-dev libssl-dev zlib1g-dev git -y`
-
-![image](https://user-images.githubusercontent.com/90505004/205987669-aa4d3b7b-7767-44e0-a1af-bf6f2e508108.png)
 
 + Создана директория, в которую установлен и распакован Netbox.
 
@@ -54,9 +43,6 @@ Date of finished: \
 
 `sudo ln -s /opt/netbox-3.3.9/ /opt/netbox`
 
-![image](https://user-images.githubusercontent.com/90505004/205988675-028a170d-1c42-4dd1-a35a-4798a3791fbb.png)
-
-
 + Создан пользователь с предоставленными правами на все папки и файлы Netbox.
 
 `groupadd --system netbox`
@@ -65,7 +51,7 @@ Date of finished: \
 
 `chown --recursive netbox /opt/netbox/netbox/media/`
 
-+ Создано виртуальное окружение, где установлены все зависимости
++ Создано виртуальное окружение, где установлены все зависимости.
 
 `python3 -m venv /opt/netbox/venv`
 
@@ -82,13 +68,12 @@ Date of finished: \
 + С помощью входящего в состав netbox исполнительного файла gnerate_secret_key.py сгенерирован секретный ключ.
 
 `netbox/generate_secret_key.py`
-![image](https://user-images.githubusercontent.com/90505004/207166779-072cc028-cee2-47d2-98a5-b0ac214ef840.png)
 
 + Открыт и отредактирован файл конфигурации configuration.py.
 
 `nano /opt/netbox/netbox/netbox/configuration.py`
 
-![image](https://user-images.githubusercontent.com/90505004/207167103-c8e9e10c-f5a4-4c6c-90ca-afffeb9abb19.png)
+![3](https://user-images.githubusercontent.com/80837580/209463463-2b320ca7-1833-4fb9-be5e-d57cfff4edfc.png)
 
 + Выполнены миграции
 
@@ -102,29 +87,24 @@ Date of finished: \
 
 `python3 manage.py collectstatic --no-input`
 
+## Установка и настройка nginx и gunicorn для запуска netbox.
+Gunicorn — это Application-сервер для запуска Web-приложений написанных на Python. Основная его задача — это работа в режиме демона и поддержка постоянной работы Web-приложений.
 
-
-## Установка и настройка nginx и gunicorn для запуска netbox
-
-### Настройка Gunicorn
-
-+ Для настройка gunicorn скопирован файл
++ Для настройки gunicorn скопирован файл
 
 `sudo cp /opt/netbox/contrib/gunicorn.py /opt/netbox/gunicorn.py`
 
-> Gunicorn — это Application-сервер для запуска Web-приложений написанных на Python. Основная его задача — это работа в режиме демона и поддержка постоянной работы Web-приложений.
-
 ### Настройка Systemd
 
-+ Скопированы файлы в каталог
++ Скопированы файлы в каталог.
 
 `sudo cp /opt/netbox/contrib/*.service /etc/systemd/system/`
 
-+ Перезагружен демон, чтобы включить изменения Systemd
++ Перезагружен демон, чтобы включить изменения Systemd.
 
 `sudo systemctl daemon-reload`
 
-+ Запущены службы netbox и .netbox-rq
++ Запущены службы netbox и .netbox-rq.
 
 `sudo systemctl start netbox netbox-rq`
 
@@ -133,18 +113,17 @@ Date of finished: \
 `sudo systemctl enable netbox netbox-rq`
 
 ### Настройка веб-сервера Nginx
-
-> Nginx― это программное обеспечение с открытым исходным кодом, которое позволяет создавать веб-сервер. Также его используют как почтовый сервер или обратный прокси-сервер.
+Nginx― это программное обеспечение с открытым исходным кодом, которое позволяет создавать веб-сервер. Также его используют как почтовый сервер или обратный прокси-сервер.
 
 + Установлен веб-сервер Nginx.
 
 `sudo apt install -y nginx`
 
-+ Скопирован файл конфигурации NetBox Nginx
++ Скопирован файл конфигурации NetBox Nginx.
 
 `sudo cp /opt/netbox/contrib/nginx.conf /etc/nginx/sites-available/netbox`
 
-+ Отредактирован файл netbox, добавлен хост и удалены https server
++ Отредактирован файл netbox, добавлен хост и удалены https server.
 
 `sudo nano /etc/nginx/sites-available/netbox`
 
@@ -160,16 +139,9 @@ Date of finished: \
 
 `sudo systemctl restart nginx`
 
+Переходя в браузер по ip открывается netbox. Есть возможность войти в систему, используя имя пользователя и пароль, которые установлены при создании учетной записи суперпользователя. Можно приступить к настройке сетевых компонентов и управлению ими.
 
-При переходе в браузере по ip открывается netbox. Теперь можно войти в систему, используя имя пользователя и пароль, которые установлены при создании учетной записи суперпользователя. Теперь можно приступить к настройке сетевых компонентов и управлению ими.
-
-<img src="https://user-images.githubusercontent.com/90505004/207171818-d1bc30b7-15b7-45c7-acdc-27871741d57d.png" height="500">
-
-## NetBox
-
-+ Проверка работы Netbox
-
-![image](https://user-images.githubusercontent.com/90505004/207181128-66c7aa92-fab1-413f-9aaa-7703bf442c81.png)
+![4](https://user-images.githubusercontent.com/80837580/209463543-c1497e05-0d23-4371-aa5f-a1da5bb379bd.png)
 
 # Заполнение всей возможной информации о CHR в Netbox
 
@@ -179,7 +151,6 @@ Date of finished: \
 
 ![image](https://user-images.githubusercontent.com/90505004/209043326-f3a82430-e0b2-4006-9544-208567e79a24.png)
 
-
 + Из NetBox был скачан файл csv с данными о роутерах
 
 # Написание сценария для настройки CHR1, CHR2
@@ -188,14 +159,9 @@ Date of finished: \
 
 + Создан файл playbook1.yml. Одна из частей задачи:спарсить csv файл и записать нужную информацию о роутере в отдельный файл. В данном случае за ключ берём UID роутера, так как это значение не будет изменяться.
 
-<img src="https://user-images.githubusercontent.com/90505004/209047715-046ee173-6c94-4356-8a8b-e40b3a7e2543.jpg" height="300">
-
 + Запущен playbook1, для проверки правильности вывода.
 
-
-![2](https://user-images.githubusercontent.com/90505004/209037355-2fb784fa-93cf-49d0-95b4-0f8175a4367d.jpg)
-
-
+![5](https://user-images.githubusercontent.com/80837580/209463592-015dae9b-3102-4313-bafb-f252c1e15d9d.jpg)
 
 + В playbook1.yml добавлена часть, которая отвечает за установку названия роутера: берётся имя роутера из csv файла, сгенерированного Netbox, и присваивает имя подключенному роутеру. 
 
@@ -205,11 +171,11 @@ Date of finished: \
 
 ![1](https://user-images.githubusercontent.com/90505004/209035345-328c27b2-6c9a-4bb5-b1cd-e8aa0b2b7b41.jpg)
 
-+ В консоли роутера видно, что название поменялось
++ В консоли роутера можно наблюдать, что название поменялось.
 
 ![photo_2022-12-16_18-39-21 (2)](https://user-images.githubusercontent.com/90505004/208134797-49154a9e-f2ef-485b-b5ab-9fbaf25ea608.jpg)
 
-# Обратная задача - информацию из роутера передать в Netbox
+# Передача информации из роутера в Netbox
 
 + Создан playbook2. С помощью него берется информация из микротика и передается в файл на виртуальную машину в облако. Также с помощью плейбука вносится информация в Netbox: для этого создается устройство, где уже задана часть настроек, имя используется из микротика.
 
@@ -222,6 +188,6 @@ Date of finished: \
 
 ## Вывод
 
-В результате выполнения работы выполнена установка и настрйока Netbox. Написаны ansible playbooks для взаимодействия ранее настроеных роутеров и Netbox. Netbox показал себя как удобное средство для документирования сети.
+В результате выполнения работы выполнена установка и настройка Netbox. Написаны ansible playbooks для взаимодействия ранее настроеных роутеров и Netbox. 
 
 ![image](https://user-images.githubusercontent.com/90505004/209042785-62406a8c-d0c8-4d5f-868a-798f54bc4528.png)
